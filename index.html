@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+	<head>
+		<title> Product Page</title>
+		<link rel = "stylesheet" href = "index.css">
+		<script>
+		function initialize()
+		{
+			price = 0; 
+			subRev = 0; // to count how many times the submit button is clicked 
+		}
+			
+		function reviewSub()
+		{	//only allow one review submission 
+			if (numRate.value<= 5 && numRate.value >= 1)
+			{
+				subRev++;
+				if(subRev ==1)
+				{
+					document.getElementById("rating").innerHTML= "Rate: " + numRate.value;
+					document.getElementById("review").innerHTML = commen.value;
+				}
+			}
+		}
+		function addCart() // when Add to cart is clicked, the price, quantity,and color is stored. 
+		//Also, true is set to true to display the product in the checkout
+		{
+			price = (1.99*quantSel.value).toFixed(2);
+			localStorage.setItem("quantity", quantSel.value);
+			localStorage.setItem("color",colSel.value);
+			localStorage.setItem("price", price);	
+			localStorage.setItem("true", "true")
+		}
+	
+		</script>
+		
+	</head>
+	<body onload = "initialize();">
+	<!--nav bar -------------------------------------------------------------------------------------------------->
+	<ul>
+		<img src = "img/logo.png">
+		<li><a href " "> Contact Us </a> </li> 
+		<li><a href " "> About </a></li>
+		<li><a href " "> Stationary </a></li>
+	</ul>
+	<br>
+	<!--CHECK OUT button ----------------------------------------------------------------------------------------->
+	<a href = "checkout.html"><img id = "cartImg" src = "img/cart.png"></a>
+	
+	<br>
+	<br>
+	
+
+	<!-------PRODUCT DESCRIPTION, TITLE, PRICE------------------------------------------------------------------------------>
+	<p> 
+	<img id = "productDisplay" src = "img/BLACK.png"> 
+	
+	<center>
+	<h1 class = "heading"> .38 mm GEL PEN </h1>
+	<div id = "money"> $1.99 </div>
+	<div class = "description"> Introducing the .38 mm Gel Pen, a <span class = "highlight">retractable </span> ballpoint gell pen with a <span class ="highlight" >needle tip </span>. This pen is a part of our new collection "Smooth." 
+	The intention of this collection is to allow for <span class = "highlight"> smooth, comfortable, and fluid writing </span>. Unlike our other pen designs, this 
+	pen is encased in a frosted body, for a classic <span class ="highlight">minimalistic style </span>with easy and comfortable writing.  </div>
+	</p>
+	
+	
+	<!---OPTIONS QUANTITY AND COLOR -------------------------------------------------------------------------------->
+	<label class ="submitButton"for "quantSel"> QUANTITY </label>
+		<select name = "qty" id = "quantSel">
+			<option  value = ""> </option>
+			<option value = "1"> 1 </option>
+			<option value = "5" > 5 </option> 
+			<option value = "10"> 10 </option>
+		</select>
+	
+
+	<label class ="submitButton" for "colSel"> COLOR </label>
+		<select name = "col" id = "colSel">
+			<option onclick = "imgChange();" value = "BLACK" >BLACK </option>
+			<option onclick = "imgChange();" value = "BLUE"> BLUE </option>
+			<option onclick = "imgChange();" value = "RED"> RED </option>
+		</select>
+	
+	<button class ="submitButton" onclick = "addCart();" > ADD TO CART </button>
+	</center>
+	
+	<!-----------RELATED PRODUCT SECTION --------------------------------------------------------------------------------------->
+	<hr id = "break"/>
+	
+	<center><h3> YOU MAY ALSO LIKE </h3></center>
+		<img class = "column" src = "img/option1.png">
+		<img class = "column"src = "img/option5.png">
+		<img class = "column"src = "img/option4.png">
+		<img class = "column" src = "img/option2.png">
+		<img class = "column"src = "img/option3.png">
+	
+	<!-----------------------------REVIEW SECTION ------------------------------------------------------------------------->
+	
+	
+	<center><h3 class > REVIEW </h3></center>
+
+	<div> Rating: 5 </div>
+	<div> The ink flows out smoothly and I love the needle point! It is worth its price. </div>
+	
+	<hr/>
+	<div> Rating: 5 </div>
+	<div> The pen has a good grip, my finger does not hurt after I use it for a long period of time. Highly recommend
+	for those of you who need to write for a long time. </div>
+	
+	<hr/>
+	<div> Rating: 5 </div>
+	<div>I love the design of the pen, it is plain and simple which I love! </div>
+	
+	<hr/>
+	<div id = "rating"> </div>
+	<div id = "review"> </div>
+	<span style = "display:inline"
+	<form>
+		Rating: <input id = "numRate" type = "number" min = "1" max = "5"/>
+		Comment:<input id = "commen" type = "text"/>
+	</form>
+	<button class ="submitButton" onclick = "reviewSub();"> SUBMIT </buton>
+	</span>
+	</body>
+	
+</html>
